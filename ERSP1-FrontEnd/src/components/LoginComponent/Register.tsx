@@ -32,10 +32,6 @@ export const Register: React.FC = () => {
     const storeValues = (input:any) =>{
         if (input.target.name === "username") {
             setUser((user) => ({...user, username:input.target.value}))
-            
-        } else if (input.target.name === "email") {
-            setUser((user) => ({...user, email:input.target.value}))
-
         } else if (input.target.name === "firstName") {
             setUser((user) => ({...user, firstName:input.target.value}))
 
@@ -66,8 +62,6 @@ export const Register: React.FC = () => {
                 <h2>Register to become a new User</h2>
                 <div className="input-container">
                     <input type="text" name="username" placeholder="Username" onChange={storeValues} />
-                    <br />
-                    <input type="text" name="email" placeholder="Email" onChange={storeValues}/>
                     <br />
                     <input type="text" name="firstName" placeholder="First Name" onChange={storeValues}/>
                     <br />

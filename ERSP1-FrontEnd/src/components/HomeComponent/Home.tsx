@@ -1,4 +1,8 @@
 import {useNavigate} from "react-router-dom";
+import { store } from "../../globalData/store";
+import { Profile } from "./Profile";
+import { MyReimbursementsContainer } from "../ReimbursementsComponent/UserReimbursements/MyReimbursementsContainer";
+import { Table } from "react-bootstrap";
 export const Home: React.FC = () =>{
 
     let navigate = useNavigate();
@@ -18,14 +22,32 @@ export const Home: React.FC = () =>{
         let path = "../Login";
         navigate(path)
     }
-
+    const toMyReimbursements = () => {
+        let path = "../MyReimbursements";
+        navigate(path)
+    }
     return(
         <div>
-            <h1>Welcome Home!</h1>
-            <button onClick={toLogin}>Login</button>
-            <button onClick={toUsers}>Users</button>
-            <button onClick={toReimbursements}>Reimbursements</button>
-            <button onClick={toRoles}>Roles</button>
+            <Table variant="dark" striped hover>
+                    <tbody>
+                        <tr>
+                            <th><h1>Welcome to your Dashboard</h1></th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <button onClick={toLogin}>Log Out</button>
+                                {store.loggedInUser.rolesId === 1 ? <button onClick={toUsers}>Users</button>:<></>}
+                                {store.loggedInUser.rolesId === 1 ? <button onClick={toReimbursements}>All Reimbursements</button>:<></>}
+                                {store.loggedInUser.rolesId === 1 ? <button onClick={toRoles}>Roles</button>:<></>}
+                            </th>
+                        </tr>
+                    </tbody>
+                </Table>
+             <div className="d-flex flex-wrap" >
+                <Profile></Profile>
+            </div>
+            <MyReimbursementsContainer></MyReimbursementsContainer>
         </div>
+        
     )
 }

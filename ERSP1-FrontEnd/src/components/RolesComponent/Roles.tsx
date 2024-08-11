@@ -10,7 +10,7 @@ export const Roles: React.FC<{roles:RoleInterface[]}> = ({roles}) =>{
     })
 
     return(
-        <div>
+        <div className="profile2">
             <Table variant="dark" striped bordered hover>
                 <thead>
                     <tr>

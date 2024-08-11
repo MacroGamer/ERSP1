@@ -1,5 +1,6 @@
 package com.Revature.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,7 @@ public class Roles {
     @Column(nullable = false)
     private int basePTO;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "roles", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Users> usersList;
 
@@ -67,6 +69,14 @@ public class Roles {
 
     public void setBasePTO(int basePTO) {
         this.basePTO = basePTO;
+    }
+
+    public List<Users> getUsersList() {
+        return usersList;
+    }
+
+    public void setUsersList(List<Users> usersList) {
+        this.usersList = usersList;
     }
 
     @Override
